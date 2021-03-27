@@ -26,7 +26,9 @@ def validate(cpf: str) -> bool:
 
     # Verifica a formatação do CPF
     if not re.match(r'\d{3}\.\d{3}\.\d{3}-\d{2}', cpf):
-        return False
+        cpf = re.sub(r'[^0-9]', '', cpf)
+        cpf = f"{cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}"
+        # return False
 
     # Obtém apenas os números do CPF, ignorando pontuações
     numbers = [int(digit) for digit in cpf if digit.isdigit()]

@@ -51,7 +51,7 @@ class DatabaseController(object):
                                                                                       user.cidade, user.estado)
             self.cursor.execute(insert_statement)
             self.conn.commit()
-            self.close_conn()
+            # self.close_conn()
             return True
         except Exception as err:
             print(err)
@@ -83,6 +83,7 @@ class DatabaseController(object):
             delete_statement = f"DELETE FROM {self.user_table} WHERE cpf = '{cpf}'"
             self.cursor.execute(delete_statement)
             self.conn.commit()
+            # self.close_conn()
             return True
         except Exception as err:
             print(err)
