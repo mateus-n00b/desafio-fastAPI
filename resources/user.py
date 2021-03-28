@@ -10,6 +10,7 @@ config = parse_configuration()
 router = APIRouter()
 
 db = DatabaseController(config['postgresql'])
+db.create_table()
 
 
 @router.get('/users/user/', status_code=200)
@@ -87,7 +88,7 @@ def update_user(user: UpdateUser):
             500,
             "Error on updating user"
         )
-    return "User created"
+    return "User updated"
 
 
 @router.delete("/users/user/")

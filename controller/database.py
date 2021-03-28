@@ -1,6 +1,6 @@
 import psycopg2
 from .bases.user import (User, UpdateUser)
-
+import time
 
 class DatabaseController(object):
     def __init__(self, config):
@@ -18,6 +18,7 @@ class DatabaseController(object):
         except Exception as err:
             print(err)
             print("Error on connecting")
+            exit(255)
 
     def reconnect(self):
         try:
@@ -29,6 +30,7 @@ class DatabaseController(object):
         except Exception as err:
             print(err)
             print("Error on connecting")
+            exit(255)
 
     def get_user(self, cpf):
         select_statement = f"select * from {self.user_table} where cpf = \'{cpf}\'"
@@ -89,6 +91,22 @@ class DatabaseController(object):
             print(err)
             print("Error on delete")
             return False
+
+    def create_table(self):
+        sql = f"CREATE TABLE IF NOT EXISTS {self.user_table} (cpf varchar(20) primary key, nome varchar(50) not null," \
+              f"data_nascimento varchar(10) not null, cep varchar(10) not null, rua varchar(40) not null," \
+              f"bairro varchar(40) not null, cidade varchar(30) not null," \
+              f"estado varchar(40) not null)"
+
+        for i in range(3):
+            try:
+                self.cursor.execute(sql)
+                self.conn.commit()
+                break
+            except Exception as err:
+                print("Error on creating table")
+                print(err)
+                time.sleep(5)
 
     def close_conn(self):
         self.cursor.close()
