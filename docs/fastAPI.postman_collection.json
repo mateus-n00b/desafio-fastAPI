@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "dbb351ce-6b04-4353-bec5-2e4f9e1af02a",
+		"name": "fastAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Lista usuários cadastrados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Lista usuário por CPF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/user?cpf=000.000.000-07",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"user"
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "000.000.000-07"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"000.000.000-07\",\n    \"nome\": \"Mateus\",\n    \"cep\": \"40170010\",\n    \"cidade\": \"Salvador\",\n    \"bairro\": \"Ondina\",\n    \"rua\": \"Adhemar de Barros\",\n    \"estado\": \"BA\",\n    \"data_nascimento\": \"27/05/1999\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza usuário",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"000.000.000-07\",\n    \"bairro\": \"Ondina\",\n    \"rua\": \"Adhemar de Barros\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove usuário",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/user?cpf=000.000.000-07",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"user"
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "000.000.000-07"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
